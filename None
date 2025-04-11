@@ -1,0 +1,82 @@
+LAMMPS (21 Nov 2023)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+
+    #LAMMPS input file
+    # ------------------------ INITIALIZATION ----------------------------
+    processors    * * *
+    units         metal
+    dimension    3
+    boundary    p    p    p
+    atom_style   atomic
+    box tilt large
+
+The 'box' command has been removed and will be ignored
+
+    #--------------------------- LAMMPS Data File -------------------------
+    read_data     WSe_Structures/1600000_2X_2H_1500K_scale1.0476.lmp
+Reading data file ...
+  triclinic box = (-0.73185932 -0.63427238 -0.63697843) to (19.926399 17.257236 24.959476) with tilt (-9.8597047 3.9488963e-05 -8.3732565e-08)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (src/domain.cpp:220)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  432 atoms
+  read_data CPU = 0.001 seconds
+    mass * 1.0
+    #--------------------------- DUMMY FORCE_FIELD -------------------------
+    pair_style      zero 10
+    pair_coeff      * *  
+    
+    
+compute BiSpec all sna/atom 1 0.5 8 5 5 1 1
+run 0
+WARNING: No fixes with time integration, atoms won't move (src/verlet.cpp:60)
+Generated 0 of 1 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 12
+  ghost atom cutoff = 12
+  binsize = 6, bins = 6 3 5
+  2 neighbor lists, perpetual/occasional/extra = 1 1 0
+  (1) pair zero, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton/tri
+      stencil: half/bin/3d/tri
+      bin: standard
+  (2) compute sna/atom, occasional
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.058 | 4.058 | 4.058 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press     
+         0   0              0              0              0              0            
+Loop time of 5.83e-07 on 1 procs for 0 steps with 432 atoms
+
+0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 5.83e-07   |            |       |100.00
+
+Nlocal:            432 ave         432 max         432 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           4126 ave        4126 max        4126 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:          71225 ave       71225 max       71225 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:            0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 71225
+Ave neighs/atom = 164.87269
+Neighbor list builds = 0
+Dangerous builds = 0
+Total wall time: 0:00:00
